@@ -46,9 +46,11 @@ def play(update, context):
 def movies(update, context):
     if update.message.chat.id != CHAT_ID: return
     movies = [movie.replace('.mp4','') for movie in os.listdir('Movies') if '.mp4' in movie]
-    if len(movies) == 0: context.bot.send_message(chat_id=update.effective_chat.id, text="You have no movies yet. Send the name of any movie to download it!")
-    keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(movie, callback_data=movie), InlineKeyboardButton('▶️', callback_data=movie), InlineKeyboardButton('🗑️', callback_data='<DELETE>' + movie)] for movie in movies])
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Here are your downloaded movies!\nClick ▶️ to play it and 🗑️ to delete any of them", reply_markup=keyboard)
+    if len(movies) == 0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have no movies yet. Send the name of any movie to download it!")
+    else:
+        keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(movie, callback_data=movie), InlineKeyboardButton('▶️', callback_data=movie), InlineKeyboardButton('🗑️', callback_data='<DELETE>' + movie)] for movie in movies])
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Here are your downloaded movies!\nClick ▶️ to play it and 🗑️ to delete any of them", reply_markup=keyboard)
 
 def download(update, context):
     chat_id = update.effective_chat.id
