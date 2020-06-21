@@ -63,7 +63,7 @@ def download(update, context):
     if query in ['⏪', '⏯', '⏩', '➕', '➖', '🛑']: 
         player(update, context)
         return
-    if 'youtu' in file: 
+    if 'youtu' in query: 
         play(update, context)
     else:
         movie_name,einthusan_link = einthusanDetails(query)
