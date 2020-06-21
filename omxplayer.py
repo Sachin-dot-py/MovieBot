@@ -7,7 +7,7 @@ class OMX():
             # ydl = YoutubeDL()
             # r = ydl.extract_info(file, download=False)
             # url = [f['url'] for f in r['formats'] if f['acodec'] != 'none' and f['vcodec'] != 'none'][-1]
-            file = f"$(/home/pi/.local/bin/youtube-dl -g -f best '{file}')"
+            file = f"'$(/home/pi/.local/bin/youtube-dl -g -f best {file})'"
         self.p = Popen(["/usr/bin/omxplayer", "--no-osd", file],
             stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True,
                 bufsize=0, close_fds=True)
