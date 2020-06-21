@@ -38,7 +38,10 @@ def play(update, context):
         return
     else:
         global mplayer
-        mplayer = OMX(f'Movies/{message}.mp4')
+        if 'youtu' in message:
+            mplayer = OMX(message)
+        else:
+            mplayer = OMX(f'Movies/{message}.mp4')
         keyboard = ReplyKeyboardMarkup([[KeyboardButton('⏪'), KeyboardButton('⏯'), KeyboardButton('⏩')],
                                         [KeyboardButton('➕'), KeyboardButton('➖')],
                                         [KeyboardButton('🛑')]])

@@ -1,7 +1,13 @@
 from subprocess import Popen, PIPE
+from youtube_dl import YoutubeDL
 
 class OMX():
     def __init__(self, file):
+        if 'youtu' in file:
+            ydl = YoutubeDL()
+            r = ydl.extract_info(file, download=False)
+            url = [f['url'] for f in r['formats'] if f['acodec'] != 'none' and f['vcodec'] != 'none'][-1]
+            file = f"'{url}'"
         self.p = Popen(["/usr/bin/omxplayer", "--no-osd", file],
             stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True,
                 bufsize=0, close_fds=True)
