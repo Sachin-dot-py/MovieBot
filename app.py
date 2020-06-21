@@ -63,11 +63,14 @@ def download(update, context):
     if query in ['⏪', '⏯', '⏩', '➕', '➖', '🛑']: 
         player(update, context)
         return
-    movie_name,einthusan_link = einthusanDetails(query)
-    context.bot.send_message(chat_id=chat_id, text=f"Downloading {movie_name}...")
-    downloadMovie(movie_name, einthusan_link)
-    keyboard =  InlineKeyboardMarkup([[InlineKeyboardButton('✅', callback_data=movie_name), InlineKeyboardButton('❌', callback_data='')]])
-    context.bot.send_message(chat_id=chat_id, text=f"{movie_name} has been downloaded!\nWould you like to play it?", reply_markup=keyboard)
+    if 'youtu' in file: 
+        play(update, context)
+    else:
+        movie_name,einthusan_link = einthusanDetails(query)
+        context.bot.send_message(chat_id=chat_id, text=f"Downloading {movie_name}...")
+        downloadMovie(movie_name, einthusan_link)
+        keyboard =  InlineKeyboardMarkup([[InlineKeyboardButton('✅', callback_data=movie_name), InlineKeyboardButton('❌', callback_data='')]])
+        context.bot.send_message(chat_id=chat_id, text=f"{movie_name} has been downloaded!\nWould you like to play it?", reply_markup=keyboard)
 
 movie_handler = CommandHandler('movies', movies)
 dispatcher.add_handler(movie_handler)
