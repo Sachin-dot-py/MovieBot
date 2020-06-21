@@ -8,10 +8,9 @@ class OMX():
             # r = ydl.extract_info(file, download=False)
             # url = [f['url'] for f in r['formats'] if f['acodec'] != 'none' and f['vcodec'] != 'none'][-1]
             file = f"$(youtube-dl -g -f best '{file}')"
-            print("/usr/bin/omxplayer --no-osd" + " " + file)
         self.p = Popen("/usr/bin/omxplayer --no-osd" + " " + file,
             stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True,
-                bufsize=0, close_fds=True)
+                bufsize=0, close_fds=True, shell=True)
 
     def playpause(self):
         self.p.stdin.write("p")
