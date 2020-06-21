@@ -3,7 +3,6 @@ from einthusan import downloadMovie, einthusanDetails
 from omxplayer import OMX
 import logging
 import os
-import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler
 
@@ -39,7 +38,7 @@ def play(update, context):
         return
     else:
         global mplayer
-        mplayer = OMX(f'Movies/{message}')
+        mplayer = OMX(f'Movies/{message}.mp4')
         keyboard = ReplyKeyboardMarkup([[KeyboardButton('⏪'), KeyboardButton('⏯'), KeyboardButton('⏩')],
                                         [KeyboardButton('➕'), KeyboardButton('➖')],
                                         [KeyboardButton('🛑')]])
