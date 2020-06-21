@@ -30,7 +30,10 @@ def player(update, context):
         ReplyKeyboardRemove()
 
 def play(update, context):
-    message = update.callback_query.data
+    try:
+        message = update.callback_query.data
+    except:
+        message = update.message.text
     if '<DELETE>' in message:
         os.remove(f'Movies/{message.replace("<DELETE>","")}.mp4')
         context.bot.send_message(chat_id=update.effective_chat.id, text=f"Deleted {message.replace('<DELETE>','')} succesfully!")
