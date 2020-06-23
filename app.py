@@ -1,7 +1,7 @@
 from credentials import TELEGRAM_TOKEN, CHAT_ID
 from einthusan import downloadMovie, einthusanDetails
 from omxplayer import OMX
-from youtube import download
+from youtube import downloadVideo
 import logging
 import os
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
@@ -65,7 +65,8 @@ def download(update, context):
         player(update, context)
         return
     if 'youtu' in query: 
-        movie_name = download(query)
+        context.bot.send_message(chat_id=chat_id, text=f"Downloading {query}...")
+        movie_name = downloadVideo(query)
     else:
         movie_name,einthusan_link = einthusanDetails(query)
         context.bot.send_message(chat_id=chat_id, text=f"Downloading {movie_name}...")
