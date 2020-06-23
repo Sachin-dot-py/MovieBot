@@ -15,7 +15,7 @@ def downloadVideo(url):
     new_file = file.replace(name, new_name)
     os.rename(file, new_file)
     name = f'"{new_name}"'
-    return name
+    return new_file
 
 
 if __name__ == "__main__":
