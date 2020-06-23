@@ -121,3 +121,4 @@ dispatcher.add_handler(callback_handler)
 
 updater.start_polling()
 updater.idle()
+updater.stop()
