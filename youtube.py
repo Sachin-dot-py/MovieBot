@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 
 def downloadVideo(url):
@@ -9,7 +10,11 @@ def downloadVideo(url):
                                shell=True,
                                stdout=subprocess.PIPE)
     file = process.stdout.readline().rstrip().decode('UTF-8')
-    name = f'"{file.split("Movies/")[-1].strip(".mp4")}"'
+    name = file.split("Movies/")[-1].strip(".mp4")
+    new_name = name[:60]
+    new_file = file.replace(name, new_name)
+    os.rename(file, new_file)
+    name = f'"{new_name}"'
     return name
 
 
