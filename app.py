@@ -45,7 +45,7 @@ def play(update, context):
         context.bot.send_message(
             chat_id=update.effective_chat.id,
             text=f"Deleted {message.replace('<DELETE>','')} succesfully!")
-    elif message == "":
+    elif message == "None":
         return
     else:
         global mplayer
@@ -104,7 +104,7 @@ def download(update, context):
         downloadMovie(movie_name, einthusan_link)
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton('✅', callback_data=movie_name),
-        InlineKeyboardButton('❌', callback_data='')
+        InlineKeyboardButton('❌', callback_data='None')
     ]])
     context.bot.send_message(
         chat_id=chat_id,
