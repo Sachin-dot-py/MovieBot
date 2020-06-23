@@ -40,7 +40,7 @@ def play(update, context):
         message = update.callback_query.data
     except:
         message = update.message.text
-    if 'youtu' in query:    
+    if 'youtu' in message:    
         download(update, context)
     if '<DELETE>' in message:
         os.remove(f'"Movies/{message.replace("<DELETE>","")}.mp4"')
