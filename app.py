@@ -1,6 +1,7 @@
 from credentials import TELEGRAM_TOKEN, CHAT_ID
 from einthusan import downloadMovie, einthusanDetails
 from omxplayer import OMX
+from youtube import download
 import logging
 import os
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
@@ -35,16 +36,13 @@ def play(update, context):
     except:
         message = update.message.text
     if '<DELETE>' in message:
-        os.remove(f'Movies/{message.replace("<DELETE>","")}.mp4')
+        os.remove(f'"Movies/{message.replace("<DELETE>","")}.mp4"')
         context.bot.send_message(chat_id=update.effective_chat.id, text=f"Deleted {message.replace('<DELETE>','')} succesfully!")
     elif message == "":
         return
     else:
         global mplayer
-        if 'youtu' in message:
-            mplayer = OMX(message)
-        else:
-            mplayer = OMX(f'Movies/{message}.mp4')
+        mplayer = OMX(f'"Movies/{message}.mp4"')
         keyboard = ReplyKeyboardMarkup([[KeyboardButton('⏪'), KeyboardButton('⏯'), KeyboardButton('⏩')],
                                         [KeyboardButton('➕'), KeyboardButton('➖')],
                                         [KeyboardButton('🛑')]])
@@ -67,13 +65,13 @@ def download(update, context):
         player(update, context)
         return
     if 'youtu' in query: 
-        play(update, context)
+        movie_name = download(query)
     else:
         movie_name,einthusan_link = einthusanDetails(query)
         context.bot.send_message(chat_id=chat_id, text=f"Downloading {movie_name}...")
         downloadMovie(movie_name, einthusan_link)
-        keyboard =  InlineKeyboardMarkup([[InlineKeyboardButton('✅', callback_data=movie_name), InlineKeyboardButton('❌', callback_data='')]])
-        context.bot.send_message(chat_id=chat_id, text=f"{movie_name} has been downloaded!\nWould you like to play it?", reply_markup=keyboard)
+    keyboard =  InlineKeyboardMarkup([[InlineKeyboardButton('✅', callback_data=movie_name), InlineKeyboardButton('❌', callback_data='')]])
+    context.bot.send_message(chat_id=chat_id, text=f"{movie_name} has been downloaded!\nWould you like to play it?", reply_markup=keyboard)
 
 movie_handler = CommandHandler('movies', movies)
 dispatcher.add_handler(movie_handler)
