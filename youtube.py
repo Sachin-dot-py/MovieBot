@@ -1,6 +1,6 @@
 import subprocess
 
-def download(url):
+def downloadVideo(url):
     download_command = f"youtube-dl -q -f mp4 -o '~/Movies/%(title)s.%(ext)s' '{url}'"
     subprocess.call(download_command, shell=True)
     file_command = f"youtube-dl -q --get-filename -f mp4 -o '~/Movies/%(title)s.%(ext)s' '{url}'"
