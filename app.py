@@ -49,7 +49,7 @@ def play(update, context):
         return
     else:
         global mplayer
-        mplayer = OMX(f'"Movies/{message}.mp4"')
+        mplayer = OMX(f'Movies/{message}.mp4')
         keyboard = ReplyKeyboardMarkup(
             [[KeyboardButton('⏪'),
               KeyboardButton('⏯'),
