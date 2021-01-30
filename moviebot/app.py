@@ -46,7 +46,7 @@ def play(update, context):
     except:
         message = update.message.text
     if '<DELETE>' in message:
-        os.remove(f'"Movies/{message.replace("<DELETE>","")}.mp4"')
+        os.remove(f'Movies/{message.replace("<DELETE>","")}.mp4')
         context.bot.send_message(
             chat_id=update.effective_chat.id,
             text=f"Deleted {message.replace('<DELETE>','')} succesfully!")
