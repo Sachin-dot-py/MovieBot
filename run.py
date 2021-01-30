@@ -1,12 +1,12 @@
-from credentials import TELEGRAM_TOKEN as mbtoken
-from loggingconfig import logging, handle_unhandled_exception
+from moviebot.credentials import TELEGRAM_TOKEN as mbtoken
+from moviebot.loggingconfig import logging, handle_unhandled_exception
 import telegram
 import time
 import os
 import sys
 import json
 import requests
-import app as apy
+import moviebot.app as apy
 from bs4 import BeautifulSoup
 from flask import Flask, request
 

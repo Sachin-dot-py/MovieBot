@@ -1,6 +1,6 @@
 import logging
 import sys
-from credentials import logfile
+from moviebot.credentials import logfile
 
 
 def handle_unhandled_exception(exc_type, exc_value, exc_traceback):

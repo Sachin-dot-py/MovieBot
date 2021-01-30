@@ -122,7 +122,7 @@ setup(
     #
     #   py_modules=["my_module"],
     #
-    # packages=['moviebot'],  # Required
+    packages=['moviebot'],  # Required
 
     # Specify which Python versions you support. In contrast to the
     # 'Programming Language' classifiers above, 'pip install' will check this

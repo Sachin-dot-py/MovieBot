@@ -1,6 +1,6 @@
-from credentials import TELEGRAM_TOKEN, CHAT_ID
-from einthusan import downloadMovie, einthusanDetails
-from omxplayer import OMX
+from moviebot.credentials import TELEGRAM_TOKEN, CHAT_ID
+from moviebot.einthusan import downloadMovie, einthusanDetails
+from moviebot.omxplayer import OMX
 import logging
 import os
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, Bot
