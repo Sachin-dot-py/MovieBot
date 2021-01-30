@@ -40,6 +40,7 @@ def player(update, context):
 
 
 def play(update, context):
+    os.chdir(os.path.expanduser("~"))
     try:
         message = update.callback_query.data
     except:
