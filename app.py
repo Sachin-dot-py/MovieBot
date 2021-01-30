@@ -3,17 +3,22 @@ from einthusan import downloadMovie, einthusanDetails
 from omxplayer import OMX
 import logging
 import os
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, Bot
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, Dispatcher
 
 os.chdir(os.path.expanduser("~"))
 logging.basicConfig(filename='moviebot.log',
                     format='%(asctime)s ~ %(levelname)s : %(message)s',
                     datefmt='%d-%m-%Y %H:%M:%S',
                     level=logging.INFO)
-updater = Updater(TELEGRAM_TOKEN, use_context=True)
-dispatcher = updater.dispatcher
 
+# REPEATED POLLING METHOD:
+# updater = Updater(TELEGRAM_TOKEN, use_context=True)
+# dispatcher = updater.dispatcher
+
+# WEBHOOK METHOD:
+bot = Bot(TELEGRAM_TOKEN)
+dispatcher = Dispatcher(bot, None, workers=0, use_context=True)
 
 def player(update, context):
     chat_id = update.effective_chat.id
@@ -118,6 +123,7 @@ dispatcher.add_handler(download_handler)
 callback_handler = CallbackQueryHandler(play)
 dispatcher.add_handler(callback_handler)
 
-updater.start_polling()
-updater.idle()
-updater.stop()
+# FOR REPEATED POLLING METHOD:
+# updater.start_polling()
+# updater.idle()
+# updater.stop()
