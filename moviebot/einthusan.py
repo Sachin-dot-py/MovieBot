@@ -5,7 +5,7 @@ import wget
 
 def downloadLink(einthusan_url: str) -> str:
     """ Gets the download link for the einthusan player url """
-    url = 'https://bitdownloader.com/download?video={}'.format(einthusan_url)
+    url = 'https://qdownloader.io/download?video={}'.format(einthusan_url)
     req = requests.get(url)
     soup = BeautifulSoup(req.text, 'lxml')
     download_url = soup.find('a', {'class': 'downloadBtn'})['href']
